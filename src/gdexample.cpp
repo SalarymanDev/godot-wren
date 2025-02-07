@@ -7,12 +7,17 @@ void GDExample::_bind_methods() {
 }
 
 GDExample::GDExample() {
+    WrenConfiguration config;
+    wrenInitConfiguration(&config);
+    vm = wrenNewVM(&config);
 	// Initialize any variables here.
 	time_passed = 0.0;
 }
 
+
 GDExample::~GDExample() {
 	// Add your cleanup here.
+	wrenFreeVM(vm);
 }
 
 void GDExample::_process(double delta) {
